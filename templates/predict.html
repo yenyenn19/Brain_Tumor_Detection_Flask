@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="./static/css/styles.css">
+</head>
+
+<body>
+
+    <h1>Prediction Result</h1>
+
+    <div class="container">
+        <!-- Display Result Image -->
+        <div class="image-container">
+            <h2>Result Image</h2>
+            <img id="resultImage" src="{{ result_image }}" alt="Result Image" style="max-width: 100%; border: 2px solid #ddd; border-radius: 5px;">
+        </div>
+
+        <!-- Display Class Probabilities -->
+        <div class="probabilities">
+            <h3>Class Probabilities for the Highest Probability Grid:</h3>
+            <ul>
+                {% for class_name, prob in class_probabilities.items() %}
+                    <li>{{ class_name }}: {{ prob }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Return to Home Button -->
+        <button onclick="window.location.href='/'">Return to Home</button>
+    </div>
+
+</body>
+</html>
