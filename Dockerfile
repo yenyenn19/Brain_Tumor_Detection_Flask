@@ -1,5 +1,5 @@
 # 1. Start with a lightweight Python 3.9 image
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 # 2. Set environment variables to improve performance
 ENV PYTHONDONTWRITEBYTECODE=1
