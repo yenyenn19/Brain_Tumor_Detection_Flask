@@ -23,31 +23,30 @@ git clone https://github.com/yenyenn19/Brain_Tumor_Detection_Flask.git
 cd Brain_Tumor_Detection_Flask
 ```
 
-### 2. Set Up Python Virtual Environment
+### 2. Add Model Files
 
 ```bash
-python3 -m venv myenv
-source myenv/bin/activate
+Brain_Tumor_Detection_Flask/
+└── model/
+    ├── yolov8/
+    │   └── best.pt              # YOLOv8 model
+    └── detr_resnet_101/
+        └── DETR_model           # DETR model file
 ```
+⚠️ These files are not included in the repo due to size. Make sure they exist before building the image.
 
-### 3. Install dependencies
+### 3. Build the Docker Image
 
 ```bash
-pip install -r requirements.txt
+docker build -t brain-tumor-detection .
 ```
 
----
-## Running the App with Gunicorn
-If virtual environment is activated
-  
-```bash
-gunicorn --bind 0.0.0.0:5000 app:app
-```
+### Run the Container
 
-OR run directly without activating the venv
 ```bash
-./myenv/bin/gunicorn --bind 0.0.0.0:5000 app:app
+docker run -d -p 5000:5000 brain-tumor-detection
 ```
+Then open your browser: http://localhost:5000
 
 ---
 ## Disclaimer
