@@ -15,7 +15,8 @@ from detr_model import display_image
 app = Flask(__name__)
 
 # Folder to store uploaded files
-UPLOAD_FOLDER = '/var/www/Brain_Tumor_Detection/static/uploads/'
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static', 'uploads')
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -61,7 +62,8 @@ def predict():
     score = 0
     # Load the selected model
     if selected_model == "yolov8":
-        model_path = '/var/www/Brain_Tumor_Detection/model/yolov8/best.pt'
+        BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+        model_path = os.path.join(BASE_DIR, 'model', 'yolov8', 'best.pt')
         model = YOLO(model_path)
         class_names = ['Glioma', 'Meningioma', 'No Tumor', 'Pituitary']
     
@@ -86,7 +88,8 @@ def predict():
 
 
     elif selected_model == "DETR-Resnet-101":
-        model_path = '/var/www/Brain_Tumor_Detection/model/detr_resnet_101/DETR_model'
+        BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+        model_path = os.path.join(BASE_DIR, 'model', 'detr_resnet_101', 'DETR_model')
         
         class_names = ['Glioma', 'Meningioma', 'No Tumor', 'Pituitary']
         res_img, score, probs = display_image(img_path, model_path)
